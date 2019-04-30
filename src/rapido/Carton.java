@@ -6,13 +6,13 @@ import java.util.Collections;
 
 
 public class Carton {
-    private final ArrayList<Integer> numero = new ArrayList<Integer>();
+    private ArrayList<Integer> numero = new ArrayList<Integer>();
     private int tamaño;
     
     
-    public Carton(Integer numero,int tamaño) {
+    public Carton(int tamaño,ArrayList <Integer> numeros) {
         Collections.sort(numero);
-        this.numero=numero;
+        this.numero = numero;
         this.tamaño = tamaño;
     }
 
@@ -22,16 +22,16 @@ public class Carton {
     
     
     
-    public boolean Comprobar_carton(Carton carton){
+    public boolean Comprobar_carton(ArrayList <Integer> bolas_extraidas){
        int c = 0;
-        for(int to: this.bolas_extraidas) {
-            for(int yo: carton.getNumero()){
+        for(int to: bolas_extraidas) {
+            for(int yo: this.getNumero()){
                 if(yo==to){
                 c++;
             }
          }
      }
-        if(c==carton.getTamaño()){
+        if(c==this.getTamaño()){
                 return true;
         }else{
               return false;

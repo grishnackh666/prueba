@@ -28,11 +28,11 @@ public class BingoClásico extends Bingo{
         return true;
     }
 
-    @Override
-    public Carton generarCarton() {
+     @Override
+    public Carton Generar_un_cartón() {
         if (this.numCartonesGenerados < this.limiteCartones) {
             this.numCartonesGenerados++;
-            return super.generarCarton();
+            return super.Generar_un_cartón();
         }
         return null;
     }

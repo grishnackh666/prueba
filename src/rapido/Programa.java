@@ -2,7 +2,6 @@
 package rapido;
 
 import java.util.ArrayList;
-import static rapido.Bingo.imprimeArrayBingos;
 
 
 public class Programa {
@@ -28,9 +27,11 @@ public class Programa {
         }
 
         for (int i = 0; i < CartonClasico.size(); i++) {
+            System.out.println("la cantidad es: ");
             System.out.println(CartonClasico.get(i).toString());
         }
         for (int i = 0; i < CartonAmericano.size(); i++) {
+            System.out.println("la cantidad es: ");
             System.out.println(CartonClasico.get(i).toString());
         }
         for (int i = 0; i < bingos.size(); i++) {
