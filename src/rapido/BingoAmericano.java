@@ -9,15 +9,28 @@ import java.util.ArrayList;
 
 
 public class BingoAmericano extends Bingo{
-    private int bola_mayor=75;
-    private ArrayList<Integer> bola = new ArrayList<Integer>();
-    private int tamaño_del_carton=25;
-        
+    
         public BingoAmericano() {
-        for(int i=1;i<=bola_mayor;i++){
-            this.bola.add(i);
-        }
-        }
+        super(75, 25);
+    }
         
-        
+        @Override
+        protected boolean esAceptable(Carton carton) {
+        ArrayList<Integer> numeros = new ArrayList<Integer>();
+        int suma = 0; double promedio;
+        for(int i = 0; i < this.tamaño_del_carton; i++) {
+            suma += numeros.get(i);
+        }
+        promedio = (double) (suma / this.tamaño_del_carton);
+        return (promedio > 50);
+    }
+
+    @Override
+    public int Extraer_una_bola() {
+        int extraer;
+        do {
+            extraer = super.Extraer_una_bola();
+        } while(extraer == this.ultima_bola + 1);
+        return extraer;
+    }
 }

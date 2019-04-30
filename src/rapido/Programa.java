@@ -1,32 +1,42 @@
 
 package rapido;
 
+import java.util.ArrayList;
 import static rapido.Bingo.imprimeArrayBingos;
 
 
 public class Programa {
     public static void main(String[] args) {
-        Bingo[] bingos = new Bingo[5];
+        ArrayList<Bingo> bingos = new ArrayList<>();
         
-        Bingo bingo = new BingoClásico();
-        Bingo bing = new BingoAmericano();
+        BingoClásico bingoC = new BingoClásico(5);
+        BingoAmericano bingoA = new BingoAmericano();
+        bingos.add(bingoA);
+        bingos.add(bingoC);
         
-        bingos[0] = new BingoClásico();
-        bingos[1] = new BingoClásico();
-        bingos[2] = new BingoClásico();
-        bingos[3] = new BingoClásico();
-        bingos[4] = new BingoClásico();
+        ArrayList<Carton> CartonClasico = new ArrayList<>();
+        ArrayList<Carton> CartonAmericano = new ArrayList<>();
         
-        imprimeArrayBingos(bingos);
-
-               
-        while(bingo.isFinalizado()==false){
-            
-             int ball = bingo.Extraer_una_bola();
-            System.out.println("bola: "+ball);
+        for (int i = 0; i < bingos.size(); i++) {
+            for (int y = 0; y < 5; y++) {
+                if (bingos.get(i).getClass() == BingoClásico.class) {
+                    CartonClasico.add(bingos.get(i).Generar_un_cartón());
+                } else {
+                    CartonAmericano.add(bingos.get(i).Generar_un_cartón());
+                }
+            }
         }
-        for(Carton to: bingo.getCartones_ganadores()){
-            System.out.println("carton ganador: "+to.getNumero());
+
+        for (int i = 0; i < CartonClasico.size(); i++) {
+            System.out.println(CartonClasico.get(i).toString());
+        }
+        for (int i = 0; i < CartonAmericano.size(); i++) {
+            System.out.println(CartonClasico.get(i).toString());
+        }
+        for (int i = 0; i < bingos.size(); i++) {
+            while (bingos.get(i).finalizado) {
+                System.out.println(bingos.get(i).Extraer_una_bola());
+            }
         }
     }
 }

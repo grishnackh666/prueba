@@ -9,11 +9,17 @@ public abstract class Bingo {
     private ArrayList<Integer> bombo = new ArrayList<Integer>();
     private ArrayList<Integer> bolas_extraidas = new ArrayList<Integer>();
     private ArrayList<Carton> cartones = new ArrayList<Carton>();
-    private int ultima_bola=0;
-    private static final int bola_mayor=30;
-    private static final int tamaño_del_carton=9;
+    private ArrayList<Carton> cartonesBingo = new ArrayList<Carton>();
+    protected  int ultima_bola;
+    private static final int bola_mayor;
+    protected  static final int tamaño_del_carton;
+    public boolean finalizado;
 
-    public Bingo() {
+    protected Bingo(int bola_mayor, int tamaño_del_carton) {
+        this.bola_mayor = bola_mayor;
+        this.tamaño_del_carton = tamaño_del_carton;
+        this.ultima_bola = 0;
+        
         for(int i=1;i<=bola_mayor;i++){
             this.bombo.add(i);
         }
@@ -52,16 +58,42 @@ public abstract class Bingo {
     }
 
     
-    
     public int Extraer_una_bola(){
         int bolaExtraida;
              java.util.Collections.shuffle(this.bombo);
              bolaExtraida = this.bombo.get(0);
+             this.ultima_bola = bolaExtraida;
              this.bolas_extraidas.add(bolaExtraida);
              this.bombo.remove(0);
+             for(Carton crt : this.cartones) {
+                if(crt.isBingo(this.bolas_extraidas)) {
+                this.cartonesBingo.add(crt);
+            }
+        }
         return bolaExtraida; 
     }
  
+    protected abstract boolean esAceptable(Carton carton);
+    
+    public Carton generarCarton() {
+        Carton carton;
+        ArrayList<Integer> numeros = new ArrayList<Integer>();
+        do {
+            Collections.shuffle(this.bombo);
+            for(int i = 0; i < this.tamaño_del_carton; i++) {
+                numeros.add(this.bombo.get(i));
+            }
+            carton = new Carton(numeros, this.tamaño_del_carton);
+        } while(this.cartones.contains(carton) && esAceptable(carton));
+        this.cartones.add(carton);
+        return carton;
+    }
+    
+    
+    
+    
+    
+    
     public ArrayList<Integer> getBombo() {
         return bombo;
     }
@@ -80,9 +112,4 @@ public abstract class Bingo {
         return tamaño_del_carton;
     }
     
-    static void imprimeArrayBingos(Bingo[] array) {
-        for (int i = 0; i < array.length; i++) {
-            System.out.println(array[i]);
-        }
-    }
 }

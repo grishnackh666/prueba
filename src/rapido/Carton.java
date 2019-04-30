@@ -2,21 +2,26 @@
 package rapido;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class Carton {
     private final ArrayList<Integer> numero = new ArrayList<Integer>();
     private int tamaño;
-    private int[] bolas_extraidas;
     
     
-    public Carton(int...numero) {
-        for(int number : numero){
-            this.numero.add(number);
-        }
-        this.tamaño = this.numero.size();
+    public Carton(Integer numero,int tamaño) {
+        Collections.sort(numero);
+        this.numero=numero;
+        this.tamaño = tamaño;
     }
 
+    public boolean isBingo(ArrayList<Integer> bolasExtraidas) {
+        return this.numero.containsAll(bolasExtraidas);
+    }
+    
+    
+    
     public boolean Comprobar_carton(Carton carton){
        int c = 0;
         for(int to: this.bolas_extraidas) {
