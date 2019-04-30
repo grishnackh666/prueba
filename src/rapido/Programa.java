@@ -1,23 +1,23 @@
 
 package rapido;
 
+import static rapido.Bingo.imprimeArrayBingos;
+
 
 public class Programa {
     public static void main(String[] args) {
-        
-        Bingo bingos = new Bingo();
+        Bingo[] bingos = new Bingo[5];
         
         Bingo bingo = new BingoClásico();
         Bingo bing = new BingoAmericano();
         
-        Carton carton1 = bingo.Generar_un_cartón();
-        Carton carton2 = bingo.Generar_un_cartón();
-        Carton carton3 = bingo.Generar_un_cartón();
-        Carton carton4 = bingo.Generar_un_cartón();
-        Carton carton5 = bingo.Generar_un_cartón();
-        System.out.println("los numeros son" + carton1.getNumero());
-        System.out.println("los numeros son" + carton2.getNumero());
-        System.out.println("los numeros son" + carton3.getNumero());
+        bingos[0] = new BingoClásico();
+        bingos[1] = new BingoClásico();
+        bingos[2] = new BingoClásico();
+        bingos[3] = new BingoClásico();
+        bingos[4] = new BingoClásico();
+        
+        imprimeArrayBingos(bingos);
 
                
         while(bingo.isFinalizado()==false){

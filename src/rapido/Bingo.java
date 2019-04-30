@@ -71,12 +71,7 @@ public abstract class Bingo {
     public ArrayList<Carton> getCartones() {
         return cartones;
     }
-    public ArrayList<Carton> getCartones_ganadores() {
-        return cartones_ganadores;
-    }
-    public boolean isFinalizado() {
-        return finalizado;
-    }
+   
     public static int getBola_mayor() {
         return bola_mayor;
     }
@@ -85,5 +80,9 @@ public abstract class Bingo {
         return tamaño_del_carton;
     }
     
-    
+    static void imprimeArrayBingos(Bingo[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.println(array[i]);
+        }
+    }
 }

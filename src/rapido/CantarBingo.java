@@ -10,7 +10,23 @@ import java.util.ArrayList;
 public class CantarBingo extends Bingo {
     
         private ArrayList<Carton> cartones_ganadores = new ArrayList<Carton>();
-            private boolean finalizado;
+        private boolean finalizado;
+
+    public ArrayList<Carton> getCartones_ganadores() {
+        return cartones_ganadores;
+    }
+
+    public void setCartones_ganadores(ArrayList<Carton> cartones_ganadores) {
+        this.cartones_ganadores = cartones_ganadores;
+    }
+
+    public boolean isFinalizado() {
+        return finalizado;
+    }
+
+    public void setFinalizado(boolean finalizado) {
+        this.finalizado = finalizado;
+    }
 
             
             
